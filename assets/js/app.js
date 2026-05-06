@@ -1,6 +1,11 @@
 const cl = console.log;
 
 const stdContainer = document.getElementById('stdContainer')
+const fnameControl = document.getElementById('fname')
+const lnameControl = document.getElementById('lname')
+const emailContainer = document.getElementById('email')
+const conatactContainer = document.getElementById('contact')
+
 
 
 

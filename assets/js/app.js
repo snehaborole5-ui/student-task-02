@@ -1,13 +1,19 @@
 const cl = console.log;
-
 const stdContainer = document.getElementById('stdContainer')
+const stdForm = document.getElementById('stdForm')
 const fnameControl = document.getElementById('fname')
 const lnameControl = document.getElementById('lname')
-const emailContainer = document.getElementById('email')
-const conatactContainer = document.getElementById('contact')
+const emailControl = document.getElementById('email')
+const contactControl = document.getElementById('contact')
+const addStdBtn = document.getElementById('addStdBtn')
 const updateStdBtn = document.getElementById('updateStdBtn')
+const stdTbale = document.getElementById('stdTable')
+const noStdMsg = document.getElementById('noStdMsg')
 
 
+
+
+// DB
 
 let stdArr = [
     {
@@ -36,26 +42,27 @@ let stdArr = [
 
 function createTrs(arr){
     let result = '';
-    arr.forEach((std,i) => {
-        // cl(std)
-        result += `
-                        <tr id="${std.stdId}">
-                                        <td>${i + 1}</td>
-                                        <td>${std.fname} ${std.lname}</td>
-                                        <td>${std.email}</td>
-                                        <td>${std.contact}</td>
-                                        <td>
-                                            <i role="button" class="fa-solid fa-pen-to-square fa-2x text-success"></i>
-                                        </td>
-                                        <td>
-                                            <i role="button" class="fa-solid fa-trash fa-2x text-danger"></i>
-                                        </td>
-                                    </tr>
-        `
+arr.forEach((std,i) =>{
+    // cl(std)
+    result += `
+            <tr id="${std.stdId}">
+                            <td>${i + 1}</td>
+                            <td>${std.fname} ${std.lname}</td>
+                            <td>${std.email}</td>
+                            <td>${std.contact}</td>
+                            <td>
+                                <i onClick="onStdEdit(this)"
+                                 role="button" class="fa-solid fa-pen-to-square fa-2x text-success"></i>
+                                </td>
+                                <td>
+                                <i onClick="onStdRemove(this)" 
+                                role="button" class="fa-solid fa-trash fa-2x text-danger"></i>
+                            </td>
+                        </tr>`
+    
+})
 
-    })
-
-    stdContainer.innerHTML = result;
+stdContainer.innerHTML = result;
 }
 createTrs(stdArr)
 
@@ -101,7 +108,60 @@ function onStdRemove(ele){
 
     addStdBtn.classList.add('d-none')
     updateStdBtn.classList.remove('d-none')
- }   
+ }       
+
+function onStdSubmit(eve){
+eve.preventDefault()
+let NEW_STD = {
+    fname: fnameControl.value,
+    lname: lnameControl.value,
+    email: emailControl.value,
+    contact: contactControl.value,
+    stdId: Date.now().toString()
+}
+cl(NEW_STD)
+
+stdArr.push(NEW_STD)
+
+stdForm.reset()
+
+// we will create a new tr and append it in tbody
+let tr = document.createElement('tr')
+
+tr.innerHTML = `
+                <td>1</td>
+                <td>${NEW_STD.fname} ${NEW_STD.lname}</td>
+                  <td>${NEW_STD.email}</td>
+                <td>${NEW_STD.contact}</td>
+               <td>
+                    <i onClick="onStdEdit(this)"
+                    role="button" class="fa-solid fa-pen-to-square fa-2x text-success"></i>
+                </td>
+                <td>
+                    <i onClick="onStdRemove(this)" 
+                    role="button" class="fa-solid fa-trash fa-2x text-danger"></i>
+                </td>
+
+`
+stdContainer.append(tr)
+
+Swal.fire({
+    title:`The new student ${NEW_STD.fname} ${NEW_STD.lname} added successfully!!!`,
+    icon:'success',
+    timer: 3000
+})
+
+if(stdArr.length > 0){
+        stdTbale.classList.remove('d-none')
+        noStdMsg.classList.add('d-none')
+
+        templating(stdArr);
+    }else{
+        stdTbale.classList.add('d-none');
+        noStdMsg.classList.remove('d-none')
+    }
+
+}
 
 function onStdUpdate(e){
     // update id
@@ -134,6 +194,7 @@ function onStdUpdate(e){
     
     
 }
+
 
 stdForm.addEventListener('submit',onStdSubmit)
 updateStdBtn.addEventListener('click',onStdUpdate)

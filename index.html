@@ -19,92 +19,98 @@
     crossorigin="anonymous">
 
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <body>
-        <header class="bg-primary text-white p-4">
-            <h1>Student Task</h1>
-        </header>
-        <div class="container-fluid mt-5">
-            <div class="row">
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <div class="card">
-                        <div class="card-body">
-                            <form id="stdForm">
-                                <div class="form-group">
-                                    <lable for="fname" class="sr-only">First Name</lable>
-                                    <input type="text" 
-                                    placeholder="First Name"
-                                    id="fname"
-                                    class="form-control"
-                                    />
-                                </div>
-                                <div class="form-group">
-                                    <lable for="lname" class="sr-only">Last Name</lable>
-                                    <input type="text" 
-                                    placeholder="Last Name"
-                                    id="lname"
-                                    class="form-control"
-                                    />
-                                </div>
-                                <div class="form-group">
-                                    <lable for="email" class="sr-only">Email</lable>
-                                    <input type="text" 
-                                    placeholder="Email"
-                                    id="email"
-                                    class="form-control"
-                                    />
-                                </div>
-                                <div class="form-group">
-                                    <lable for="contact" class="sr-only">Contact</lable>
-                                    <input type="text" 
-                                    placeholder="Contact"
-                                    id="contact"
-                                    class="form-control"
-                                    />
-                                </div>
-
-                                <button id="addStdBtn" type="submit" class="btn btn-primary btn-sm btn-block">Add Student</button>
-                                <button id="updateStdBtn" type="button" class=" d-none btn btn-primary btn-sm btn-block">Update Student</button>
-                            </form>
-                        </div>
+</head>
+<body>
+    <header class="bg-primary text-white p-4">
+        <h1>Student Task</h1>
+    </header>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="stdForm">
+                    <div class="form-group">
+                        <label for="fname" class="sr-only">First Name</label>
+                        <input type="text"
+                        placeholder="First Name"
+                        id="fname"
+                        class="form-control"
+                        />
+                            
                     </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-body table-responsive">
-                            <table class="table table-bordered m-0" id="stdTbale">
-                                <thead>
-                                    <tr>
-                                        <th>Sr No</th>
-                                        <th>Full Name</th>
-                                        <th>Email</th>
-                                        <th>Contact</th>
-                                        <th>Edit</th>
-                                        <th>Remove</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody id="stdContainer">
-                                    <!-- <tr>
-                                        <td>1</td>
-                                        <td>Jhon Doe</td>
-                                        <td>jd@gmail.com</td>
-                                        <td>1234567890</td>
-                                        <td>
-                                            <i role="button" class="fa-solid fa-pen-to-square fa-2x text-success"></i>
-                                        </td>
-                                        <td>
-                                            <i role="button" class="fa-solid fa-trash fa-2x text-danger"></i>
-                                        </td>
-                                    </tr> -->
-                                </tbody>
-                            </table>
+                        <div class="form-group">
+                            <label for="lname" class="sr-only">Last Name</label>
+                            <input type="text"
+                        placeholder="Last Name"
+                        id="lname"
+                        class="form-control"
+                        />
                         </div>
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Email</label>
+                            <input type="text"
+                        placeholder="Email"
+                        id="email"
+                        class="form-control"
+                        />
+                        </div>
+                        <div class="form-group">
+                            <label for="conatct" class="sr-only">Contact</label>
+                            <input type="text"
+                        placeholder="Conatct"
+                        id="contact"
+                        class="form-control"
+                        />
+                        </div>
+
+                        <button id="addStdBtn" type="submit" class="btn btn-primary btn-sm btn-block">Add Student</button>
+                         <button id="updateStdBtn" type="button" class=" d-none btn btn-primary btn-sm btn-block">Update Student</button>
+                </form>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body table-responsive">
+               <table class="table table-bordered m-0" id="stdTable">
 
-        <script src="https://cdn.jsdeliver.net/npm/sweetalert2@11"></script>
-        <script src="./assets/js/app.js"></script>
-    </body>
-</head>
+                    <thead>
+                        <tr>
+                            <th>Sr No</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Edit</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody id="stdContainer">
+                        <!-- <tr>
+                            <td>1</td>
+                            <td>Jhon Doe</td>
+                            <td>jd@gmail.com</td>
+                            <td>1234567890</td>
+                            <td>
+                                <i role="button" class="fa-solid fa-pen-to-square fa-2x text-success"></i>
+                                </td>
+                                <td>
+                                <i role="button" class="fa-solid fa-trash fa-2x text-danger"></i>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+                <p class="alert alert-warning d-none" id="noStdMsg">
+                    No Student Data!!!
+                </p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+    <script src="./assets/js/app.js"></script>
+</body>
+</html>
